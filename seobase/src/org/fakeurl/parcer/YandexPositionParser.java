@@ -7,6 +7,7 @@ import org.fakeurl.exeptions.CaptchaException;
 
 import java.io.IOException;
 
+import java.net.URLEncoder;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -27,19 +28,45 @@ public class YandexPositionParser extends AbstractPositionParser {
     @Override
     protected Integer currentPosition(String domain, String word, String query) throws CaptchaException, IOException {
 
-        int position = 0;
-        int i = 0;
-        while(i < 5){
-            Source source = ParcerUtil.getSourceWithEncodeUTF8(String.format(query, i, word));
-
+        Integer position = 0;
+        boolean domainWasFound = false;
+        for (int i = 0; i < 5 && !domainWasFound; i++) {
+            System.out.println(String.format(query, i, URLEncoder.encode(word, ENCODING)));
+            Source source = ParcerUtil.getSourceWithEncodeUTF8(String.format(query, i, URLEncoder.encode(word, ENCODING)));
+            System.out.println(source.getTextExtractor().toString());
             List<Element> allElements = source.getAllElements(HTMLElementName.LI);
-            for (Iterator<Element> iterator = allElements.iterator(); iterator.hasNext(); ) {
+
+            for (Iterator<Element> iterator = allElements.iterator(); iterator.hasNext() && !domainWasFound; ) {
                 Element element = iterator.next();
 
+                if(!isRealSite(element)){
+                    continue;
+                }
+                List<Element> cites = element.getAllElements(HTMLElementName.A);
+                if(cites.size() < 1){
+                    continue;
+                }
+                String site = "";
+                for (Iterator<Element> elementIterator = cites.iterator(); elementIterator.hasNext(); ) {
+                    Element next = elementIterator.next();
+
+                    if(next.getAttributeValue("class") != null && next.getAttributeValue("class").equals("b-serp-item__title-link")){
+                        site = next.getAttributeValue("href");
+                        break;
+                    }
+                }
+                position++;
+
+                System.out.println(site);
+                if(site.startsWith(domain)) domainWasFound = true;
             }
         }
-//        System.out.println(source.getParseText().toString());
-        return position;
+        return domainWasFound ? position : 51;
+    }
+
+    private boolean isRealSite(Element element) {
+
+        return true;
     }
 
     @Override
@@ -59,7 +86,7 @@ public class YandexPositionParser extends AbstractPositionParser {
         try {
             YandexPositionParser parcer = new YandexPositionParser();
 
-            Integer water = parcer.currentPosition("", "water", simpleQueryUrl);
+            Integer water = parcer.currentPosition("pizza-kiev.com.ua", "пицца киев");
             System.out.println(water);
         } catch (CaptchaException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.

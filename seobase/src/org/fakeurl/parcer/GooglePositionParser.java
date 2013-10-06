@@ -3,33 +3,28 @@ package org.fakeurl.parcer;
 import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.HTMLElementName;
 import net.htmlparser.jericho.Source;
-import org.apache.http.StatusLine;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.fakeurl.exeptions.CaptchaException;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  */
-public class GooglePositionParser implements IPositionParser {
+public class GooglePositionParser extends AbstractPositionParser {
 
-    private static String simpleQuery = "https://google.com.ua/search?q=%s&start=%s";
+    private static String simpleQueryPattern = "https://google.com/search?q=%s&start=%s";
+    public final String ENCODING = "utf-8";
 
     @Override
-    public Integer currentPosition(String domain, String word, String query) throws CaptchaException, IOException {
+    protected Integer currentPosition(String domain, String word, String queryPattern) throws CaptchaException, IOException {
         Integer position = 0;
         boolean domainWasFound = false;
         for (int i = 0; i < 5 && !domainWasFound; i++) {
-            Source source = ParcerUtil.getSourceWithEncodeWIN1251(String.format(query, URLEncoder.encode(word, "utf-8"), i * 10));
+            Source source = ParcerUtil.getSourceWithEncodeWIN1251(String.format(queryPattern, URLEncoder.encode(word, ENCODING), i * 10));
             List<Element> allElements = source.getAllElements(HTMLElementName.LI);
 
             for (Iterator<Element> iterator = allElements.iterator(); iterator.hasNext() && !domainWasFound; ) {
@@ -54,6 +49,11 @@ public class GooglePositionParser implements IPositionParser {
         return domainWasFound ? position : 51;
     }
 
+    @Override
+    protected String getQueryPattern() {
+        return simpleQueryPattern;
+    }
+
     private boolean isRealSite(Element element){
         try{
             String aClass = element.getAttributeValue("class");
@@ -66,6 +66,8 @@ public class GooglePositionParser implements IPositionParser {
             if(childElements1.size() != 1) return false;
             Element a = childElements1.get(0);
             if(!a.getAttributeValue("href").startsWith("/url?")) return false;
+            List<Element> tables = element.getAllElements(HTMLElementName.TABLE);
+            if(!tables.isEmpty()) return false;
         } catch(NullPointerException e){
             return false;
         }
@@ -74,8 +76,15 @@ public class GooglePositionParser implements IPositionParser {
 
     public static void main(String[] args) throws IOException, CaptchaException {
         GooglePositionParser parser = new GooglePositionParser();
-        Integer position = parser.currentPosition("pizza-kiev.com.ua", "пицца киев", simpleQuery);
+        Integer position = parser.currentPosition("pizza-kiev.com.ua", "пицца киев");
+        System.out.println("====================================================================================================");
+        Map<String, String> filter = new HashMap<String, String>();
+        filter.put("cr", "countryUA");
+        Integer position2 = parser.currentPosition("pizza-kiev.com.ua", "пицца киев", filter);
         System.out.println(position);
+        System.out.println(position2);
     }
+
+
 
 }

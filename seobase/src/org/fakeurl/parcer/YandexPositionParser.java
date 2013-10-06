@@ -7,8 +7,6 @@ import org.fakeurl.exeptions.CaptchaException;
 
 import java.io.IOException;
 
-import java.net.URL;
-import java.net.URLConnection;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -17,7 +15,7 @@ import java.util.List;
 
 /**
  */
-public class YandexPositionParser implements IPositionParser {
+public class YandexPositionParser extends AbstractPositionParser {
 
     private static final String simpleQueryUrl = "http://yandex.ua/yandsearch?p=%s&text=%s";
 
@@ -27,7 +25,7 @@ public class YandexPositionParser implements IPositionParser {
     }
 
     @Override
-    public Integer currentPosition(String domain, String word, String query) throws CaptchaException, IOException {
+    protected Integer currentPosition(String domain, String word, String query) throws CaptchaException, IOException {
 
         int position = 0;
         int i = 0;
@@ -42,6 +40,11 @@ public class YandexPositionParser implements IPositionParser {
         }
 //        System.out.println(source.getParseText().toString());
         return position;
+    }
+
+    @Override
+    protected String getQueryPattern() {
+        return simpleQueryUrl;
     }
 
 //    public Source getSource(String strUrl) throws IOException{

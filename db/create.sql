@@ -1,7 +1,7 @@
 CREATE TABLE sp_site (
     id serial PRIMARY KEY,
-    name varchar(100) DEFAULT NULL,
-    domain varchar(100) NOT NULL,
+    name varchar(1000) DEFAULT NULL,
+    domain varchar(1000) NOT NULL,
     top integer DEFAULT NULL,
     start_date timestamp DEFAULT current_timestamp,
     end_date timestamp DEFAULT NULL,
@@ -16,6 +16,8 @@ CREATE TABLE sp_word (
     end_date timestamp DEFAULT NULL,
     enable boolean DEFAULT false
 );
+
+
 
 CREATE TABLE sp_position_statistic (
     id serial PRIMARY KEY,
@@ -69,12 +71,12 @@ CREATE TABLE sp_site_search_filter (
     id serial PRIMARY KEY,
     site_id integer NOT NULL,
     filter_id integer NOT NULL,
-    value varchar(100) NOT NULL
+    value varchar(1000) NOT NULL
 );
 
 CREATE TABLE sp_search_filter (
     id serial PRIMARY KEY,
-    search_engine varchar(10) NOT NULL,
-    name varchar(50) NOT NULL,
-    ui_name varchar(100) NOT NULL
+    search_engine varchar(100) NOT NULL,
+    name varchar(500) NOT NULL,
+    ui_name varchar(1000) NOT NULL
 );

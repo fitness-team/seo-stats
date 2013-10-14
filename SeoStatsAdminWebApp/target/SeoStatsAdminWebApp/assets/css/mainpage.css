@@ -1,0 +1,41 @@
+
+body {
+  padding-top: 100px;
+}
+
+.col-lg-3 a img {
+	margin-top: 20px;
+}
+
+.centred-column-content {
+	text-align: center;	
+}
+
+.subnav input {
+	margin-top: 7px;
+}
+
+footer {
+	background-color: #d5d5d5;
+}
+
+footer .container{
+	background-color: #d5d5d5;
+}
+#motivate-photo {
+	background-image: url('http://quotivee.com/wp-content/uploads/2013/07/quotivee_1440x900_0009_If-you%E2%80%99re-going-to-do-it-anyways-do-it-all-the-way..jpg');    
+	
+
+	height: 230px;
+	margin: auto;
+}
+
+.navbar img {
+	width: 20px;
+	height: 20px;
+}
+
+footer .row .row img {
+	width: 20px;
+	height: 20px;
+}

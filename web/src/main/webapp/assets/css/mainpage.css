@@ -1,0 +1,103 @@
+
+body {
+  padding-top: 100px;
+}
+div {
+display: block;
+}
+
+.col-lg-3 a img {
+	margin-top: 20px;
+}
+
+.centred-column-content {
+	text-align: center;	
+}
+
+.subnav input {
+	margin-top: 7px;
+}
+
+footer {
+	background-color: #d5d5d5;
+}
+
+footer .container{
+	background-color: #d5d5d5;
+}
+#motivate-photo {
+	background-image: url('http://quotivee.com/wp-content/uploads/2013/07/quotivee_1440x900_0009_If-you%E2%80%99re-going-to-do-it-anyways-do-it-all-the-way..jpg');    
+	
+
+	height: 230px;
+	margin: auto;
+}
+
+#exercise-cat{
+	background-image: url('http://www.jefit.com/images/exercisedatabase_background1.jpg');    
+	background-repeat: no-repeat;
+	background-position: center;
+
+	height: 430px;
+	margin: auto;	
+}
+
+.navbar img {
+	width: 20px;
+	height: 20px;
+}
+
+footer .row .row img {
+	width: 20px;
+	height: 20px;
+}
+
+.sidebar-background {
+	position: fixed;
+	z-index: -1;
+	width: 14em;
+	background: #eaeaea;
+	top: 0;
+	left: 0;
+	height: 100%;
+	border-right: 1px solid #ccc;
+}
+
+.right{
+	float: right;
+	right:0;
+	left:auto;
+}
+
+.primary-sidebar {
+	width: 14em;
+	float: left;
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	outline: none;
+}
+
+.nav-list>li {
+display: block;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	border-bottom: 1px solid #e5e5e5;
+	position: relative;
+}
+
+li {
+	line-height: 20px;
+}
+
+.nav-list>li:first-child {
+border-top: 0;
+}
+.inner-container{
+	left: 15em;
+	right: 15em;
+	max-width: 1170px;
+	position: absolute;
+}

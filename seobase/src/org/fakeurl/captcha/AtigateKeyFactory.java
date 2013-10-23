@@ -1,0 +1,221 @@
+package org.fakeurl.captcha;
+
+import java.util.*;
+
+/**
+ */
+public class AtigateKeyFactory {
+
+    String freeKeys = "97dbcc93460d7685982a2eac2b3877ff\n" +
+            "6bbbbcdabfb8ddb0ed16a95067b8f6df\n" +
+            "fa7bf314e592d4fdafacdaba7d24dd45\n" +
+            "eee25ddf8c73d67aa63ee6d19c08eea9\n" +
+            "eca4f678180aa5b027c6f62e292dab4d\n" +
+            "360b6614e1b86a07d4af3e1fe206c3eb\n" +
+            "faf1980b770941f4f1c0884e85e9deee\n" +
+            "f1cbb6dff73021af7c4340ddab9f0cfd\n" +
+            "5ebc9fc6db3b7d80ccf62ea3d2cab4ba\n" +
+            "ffeb0c1ead653ae7a140fc070432a3a1\n" +
+            "cf1cdc1ec27d2f5cc21e8fd012fdbef5\n" +
+            "ebbeed344beab2d8fb2bb4163f844cb6\n" +
+            "fae443d8c86f26a720b2bcbbdce29e38\n" +
+            "aaf7bfc3e2a22fe20f89c19e1d9069b0\n" +
+            "d8f3330341868a3e3c1d3d4b1867ce4a\n" +
+            "05eb0bdebb57cbf8dfcd900bb5bee071\n" +
+            "d5a591f64a65b2fcb7a6dd4dc5fd911f\n" +
+            "3ca5f242d55aa795bf0fe0597840fbea\n" +
+            "6fb097d13dfae6fdceb7816d5dbc7abc\n" +
+            "ca9e5f0affda44e220e5bff8c3a8550c\n" +
+            "b22fb61bb8aa44fbb830f7b54fcfff44\n" +
+            "51ba7fae05c3edae11632cdd52d6dcdb\n" +
+            "e3c5be1c9fd2d98ab5edb5faad88e8ef\n" +
+            "cabd08c6acdc97e056fc6b6de5e04a95\n" +
+            "5de9f8fe553054e2ec46e0d5ceae42fe\n" +
+            "23f33ee1955ad95ae041f35f2b0838aa\n" +
+            "133b7771fae1cba549db00fa4becbcf7\n" +
+            "765e324d59096d4d18cc9b7ceba63efe\n" +
+            "a4be60fdacd3bc0f6e3dfc94aa51b3c8\n" +
+            "bcfe5b5cfd65ce3546063ac247c974bd\n" +
+            "8bebb7fd940ac4b0e1dea92f33f9fd1f\n" +
+            "c03c92d0067e1f8998b79bfebde5e9f3\n" +
+            "e1d2b4865c02bd5ac8c0abae125c1420\n" +
+            "2b7b028889b9f2f61aaf2eddaacad569\n" +
+            "cfae39b0eaa27ff8ab1d9c73cc99bf4f\n" +
+            "643ad0ebbe4f10c4c97c1b8e89c1c6c3\n" +
+            "aac0ba4b5f6fba02f0d30e63a264dd4d\n" +
+            "9b2a3b5d181396b34e3b2d90d4f45cf3\n" +
+            "c83a7ed6f45eff8ae606340fc644b52e\n" +
+            "404d0852d3e84b014b9e2db6147da0a9\n" +
+            "8ab9d3b5e9a58a13fd45303df5e65a54\n" +
+            "fc06b318639aaaef9ed8ae19e9cbb07f\n" +
+            "81002fd5130f457f73a1f4e78016cdbd\n" +
+            "caab8ed518c6e5bbc9bf02f40ad1ccec\n" +
+            "7dfc6ba89f0ceece8d77e3fe0a3b402a\n" +
+            "e2efcec8ae52e814cb292de4a9e7def0\n" +
+            "af9240991257192e5d74c5efdf8e503d\n" +
+            "cd14f0e0cbfd53d142502d240cc7f0a9\n" +
+            "36adc1db7eadec7d4113889832bbaeb3\n" +
+            "4d1a649ea2310122e4b5e9d8dcc986ae\n" +
+            "0366a2caeb4d8c0ca6f6d9d7b3102c01\n" +
+            "7810ef5af72ddd0ee3c4cebff2afd8e6\n" +
+            "4dd52a58f8abcb70dd244daac00fbbc7\n" +
+            "d8fc5fd6b8284fecbcb90c3187aaa093\n" +
+            "be8ce44acddd0af3ed2f07f2d56d27ab\n" +
+            "ca8cfc7eddf2ed1bc361cec93fad8bc7\n" +
+            "7c75ab491bd7db0b89f2b9279ec54f03\n" +
+            "6b8a7aa83ff577128debfed64f7d8fae\n" +
+            "cb39a1fa9bd8c0c6cdb5cbd827b51b10\n" +
+            "f59edffc1a6355dafdecdace07cf4ce4\n" +
+            "f5675faefc2b8ec4fd6fe009ddbbce1b\n" +
+            "57cc9c8507f4ccc81fefa5a51c7bf7c4\n" +
+            "c9e1ac4c06158d2def9d54ad92c2ef99\n" +
+            "a2b184f9aaa36dbb9addaf1cd74bb3d9\n" +
+            "c96322b3218ee9d8cdb57199ae0bfab8\n" +
+            "86cb9879a29e4cf386deb7df50ad7cb5\n" +
+            "616ca3e1c80a89bbcdeba7bd20fe5b09\n" +
+            "dc1ff3ce100bf9ca21e5b1a2e1a87c33\n" +
+            "c9ed04ca58acbfa60bc5a29e12c5efbb\n" +
+            "c14a36c017ee2edad0b18e7a42a6b461\n" +
+            "a98982656a84b2ff00b7dbda9342d333\n" +
+            "fc50a6f1aaac78155ff781fc3bf7eef9\n" +
+            "1dc646dfd7d7fadf6d6f1658c4bd2edc\n" +
+            "64c9e052fcbc66f12b1b9c1a41fd0ead\n" +
+            "0da7b2d746295606cc5b720ce47a1b4b\n" +
+            "01192e3adcfaacf9cdf16adb805a7d0f\n" +
+            "4b25100b1fb6ccffef98964164233cfe\n" +
+            "ce71a286f4603ce7c5b4fbdb3f778d4f\n" +
+            "6b9bfd396d06dc3e179fc6adbccb13f9\n" +
+            "df469db7b2b157dd5c21b2c6f7f1d9b3\n" +
+            "a0be08e1edc430efac7ef2bacdfbe31d\n" +
+            "d2ceecada90f0af0d80ddbd6e751b0ab\n" +
+            "bb1b3cdbea889dccacba19d8b6bf3e54\n" +
+            "00cca444ed79f2dce4e84e3f57cb0bb4\n" +
+            "6a8bdb3fbffbdc894184eef55e0baefe\n" +
+            "4a796de8f2fabee3663adda6bf0f1d09\n" +
+            "eccc49b1db26c5f6ecb8619c2a8d25ab\n" +
+            "b65cbd3b89aedff7799c8daba092646d\n" +
+            "9791dc4d3bd36cecbcfc32f95cbd95f6\n" +
+            "f3e0326035979fadb9efe5d273e59a8b\n" +
+            "6c3de3d465ab6c797fdced24b0f0d9a1\n" +
+            "9e5f91fdbba6caa8f1601219c915af37\n" +
+            "df986dfcdc8845a2d4deb9a3beb51ad4\n" +
+            "6c9adb5b7ffad66bb096638ef55f40aa\n" +
+            "e0ea07d58f0fb2c2a4f88bfa6d07a2c5\n" +
+            "e7af1c7c66b8bf6ec15ffe2014d3b79a\n" +
+            "10e5581dda5948eeecdd11f0be83cea3\n" +
+            "3c04aaf4ad5cf003f0e0f06bb5f44c7f\n" +
+            "8d2bfcfd778704deae8c94dd2a1e464e\n" +
+            "27f733d8e535d35742bba2b7991e5b1a\n" +
+            "c2ab94a220cf34bb5b62e922cedfbc6c\n" +
+            "7ce05770e63ed210bbd5304f4d7a5ca6\n" +
+            "c3cf2da80a9f6aa863b3dc11e7742a26\n" +
+            "bfe5c2f3a9af19ca9cdb20db6dc07cdd\n" +
+            "b6425dbe1e07f5bded4fe569a9be5310\n" +
+            "388cd5c1641436cdf643dba1cfdb43be\n" +
+            "bc24dbfbc02eeb5c42583ba97ddecab6\n" +
+            "4515836fdb115dfe61100318ec9ce5f0\n" +
+            "0c77f4c00a1e9c7ba1d5819dcc488e32\n" +
+            "aef3858a4aedfb625d8c2a2fdc1a72db\n" +
+            "00a15facefcb936f17e0a0baaecfbe2f\n" +
+            "d7993fc86cb5ee60b45e1b5d08d8f894\n" +
+            "6fc8923ddd4a91ac1d8def71e4f4f9ec\n" +
+            "c1dcaa5e8f4c9cda8b4b25d4f615bcf3\n" +
+            "33ea9c4ac9af1c9dc9ba4bc8b56b8a8d\n" +
+            "1d78e87b1efaacc2bc57b9deb8aea42a\n" +
+            "ea38badbb1da60aa66f9ff687b284a23\n" +
+            "2dd4a135ce30aaec5e079a70952a6093\n" +
+            "06a3cac622f48dcb00f2affcab38ebe8\n" +
+            "a4b4dd5273a047e3ccfb1665f70b0d60\n" +
+            "93af32f5ab377bce1841c65a38bf0acd\n" +
+            "0fef30e691fe170222bbbd5ebc18d2bb\n" +
+            "e953dbe290d47b4cdb47daef28f9577f\n" +
+            "e410ebcb1cb64a5e4d11c57a9d1d3c67\n" +
+            "0ecaa893e7b3a89bd10bda0705eb4cfb\n" +
+            "eddf6972abfddb0fdae9fcdfec5f6363\n" +
+            "b4fa38abb4ffec8ae84dfbdd471dfd5f\n" +
+            "17aee00a9c2afdc4aaaf6ecde80e611a\n" +
+            "dd0e1a4a5a0a0ba848523c7a55ae3b45\n" +
+            "e58561ecd9f8b1c4cb39c65c9715ebe8\n" +
+            "95ffbbb5764a1c352f525cfdcf7be960\n" +
+            "fd86ba03f1d522fea144edc123c0e964\n" +
+            "48592baf535a43df4bd5bfc569ae4ee4\n" +
+            "9a2aad540ee7fc8b31dd55ae666fbc38\n" +
+            "e119f69d1ffba269eddd26d1ddcfd986\n" +
+            "daa1962aefa14d978fe2c22a0dae30f9\n" +
+            "1fe9f34fbebc0525cbe31de09acb3953\n" +
+            "fd376eecb6aca103a8bfa301416bb9a6\n" +
+            "3e32a0e3ada3fc3df0106c2481ee0f77\n" +
+            "8cc2e8b2aac10ca73dfcaeec8ddfadd8\n" +
+            "5f2f0dc3dc9dd9dffbf758c82a9e81c4\n" +
+            "df0e95276ad0deefbdfa4bfc1d8daac3\n" +
+            "b2bb4f4144dece1cd6a656d69d59ffbd\n" +
+            "58520feced16ebf8abc07c76b4ef6741\n" +
+            "a0ea13cb8d36d85154692e010920dda8\n" +
+            "bcfa7444b887fb5bdc43db4b3aacef31\n" +
+            "49587ad169a6b5eebceec7b84a479b82\n" +
+            "bd2bef5c1e192a3bfb03846d1da76eab\n" +
+            "6c8da7c19da672d41fda8dc111962cbe\n" +
+            "9c5ae3b6d4d89f1576bf064368ed6d43\n" +
+            "3ae4e0f56b212af9ed1b179c0f1c7ab1\n" +
+            "e6ad3badbf9bba9bcecd1fb79add8ebb\n" +
+            "9c3dc8ff62fff4d1c9dcac1abee6de53\n" +
+            "18e9c6c6296d3fc954ca6e41fafc64c9\n" +
+            "e8eaf8b5f58d9dbfe586cfc4dcba95b2\n" +
+            "dc82e032df3dcd37392eca31d0d7a9d3\n" +
+            "c9f37fdf4acdde93a71174ff9fc1b887\n" +
+            "59bee336addfeced49289d287f913d8b\n" +
+            "43a29e1b294f10c07a5a7c2043d8cfcf\n" +
+            "d02d447c8a01c7bb39bba1cf5ee36dfe\n" +
+            "0c3f0abab1cf6adad3acbf51aed47fd3\n" +
+            "aa6e38f7ed1187febc6c64c6fd79cbdc\n" +
+            "f7d77829c7f3cf2c7ef5ac25dbe9db4a\n" +
+            "3586bd12f7dcae58a9bb2bcce4bd677d\n" +
+            "38a7765fdec9debf7fac60d717fe006a\n" +
+            "027b82eb9994288d7abad37d92e06cbe\n" +
+            "fcf9e4c78aeb4a22ad6ce2a16bcd3e02\n" +
+            "dc4786a11a8b8de6ab68b68661b7de8f\n" +
+            "a607d7051fb0ba353fec2feafe0a65dc\n" +
+            "4d0b9ed2b0ea81915f69b7fae1946d42\n" +
+            "bb6095a8c1eeafb7ee4ee828b4c936ac\n" +
+            "0dd08fc04a385ecfc82b043fabe80593\n" +
+            "8eeb3d69df6bbaedfbec07e02b87351b\n" +
+            "f53a2cafd9bb1d9eb3e2cdd073fda801\n" +
+            "4e5275bcea5a8d8a3cfee5700aa21bff\n" +
+            "3ba69de24ff6814eda8e0874ee2b866d\n" +
+            "4d03d2fd7818bf29c3ffd8315189eb0a\n" +
+            "91be6d952f9ff57e6cf0e1c882bce25e\n" +
+            "382ef5bed093c27b4797250e7bdd654e\n" +
+            "b77e9880f00e5b541a031163afd97961\n" +
+            "514c20dc2f5a98b911fedb0c6e8f679e\n" +
+            "cd6e6b72227582794c1e9d0d58eb2a7a\n" +
+            "d9d5270f6c46e1e8f1fea98bb3bbb8ca\n" +
+            "b2fe3eb4ccda192afad4fcffa92b2861\n" +
+            "7e7ce1beecc8abe8aab2d26fb246e35d\n" +
+            "a0f9ffcab8b1568f1c0c7bbdec93b52c\n" +
+            "6a002bbb5bfc1c37b5f190fe9494f323\n" +
+            "bed50567e4b2463a61ff1880c01b24ce\n" +
+            "7cd67edef55629bdfae659f1afccc1cf\n" +
+            "3e0d35c5e11ff1557eb27a8ffae748ef\n" +
+            "544be35efd9dd1bbbb2fc9fc6d3231f5\n" +
+            "fdcc55f0ca6a04cb860c3edbd3fb2f4f\n" +
+            "c672af4d54ddbcc5adb10630d7357ccf\n" +
+            "b9604c56dbb1be7bd44cecb790de6a18\n" +
+            "ec46c1ded9b4dec5ddec28d4a209949f\n" +
+            "ea86deddcdc9e5ba3d5dca463025fc62\n" +
+            "bbe5d944122eed994d18e37fe1f02cb4\n" +
+            "a6249545d2aa6990d7cab4c34dcccc82\n" +
+            "0f7a99b2124bfbaefc26aac9eced64a5";
+
+    Set<String> keys;
+
+    public AtigateKeyFactory(){
+        keys = new HashSet<String>(Arrays.asList("".split("\n")));
+    }
+
+    public String getKey(){
+        Iterator<String> iterator = keys.iterator();
+        String next = iterator.next();
+        iterator.remove();
+        return next;
+    }
+}

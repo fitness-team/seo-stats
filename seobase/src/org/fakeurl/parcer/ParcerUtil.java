@@ -1,5 +1,9 @@
 package org.fakeurl.parcer;
 
+import com.gargoylesoftware.htmlunit.BrowserVersion;
+import com.gargoylesoftware.htmlunit.Page;
+import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import net.htmlparser.jericho.Source;
 import org.apache.http.StatusLine;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -23,7 +27,7 @@ public class ParcerUtil {
         CloseableHttpResponse response = httpClient.execute(httpGet);
         StringBuilder sb = new StringBuilder();
         try{
-            StatusLine statusLine = response.getStatusLine();
+//            StatusLine statusLine = response.getStatusLine();
 //            System.out.println(statusLine.getStatusCode());
 //            System.out.println(statusLine.getReasonPhrase());
 
@@ -45,6 +49,14 @@ public class ParcerUtil {
 
     public static Source getSourceWithEncodeWIN1251(String url) throws IOException {
         return getSource(url, "cp1251");
+    }
+
+    public static HtmlPage getHtmlPage(String url) throws IOException {
+        WebClient webClient = new WebClient(BrowserVersion.FIREFOX_17);
+        webClient.getOptions().setJavaScriptEnabled(true);
+
+        HtmlPage page = webClient.getPage(url);
+        return page;
     }
 
 }

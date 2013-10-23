@@ -1,5 +1,7 @@
 package org.fakeurl.parcer;
 
+import com.gargoylesoftware.htmlunit.html.HtmlElement;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.HTMLElementName;
 import net.htmlparser.jericho.Source;
@@ -32,39 +34,39 @@ public class YandexPositionParser extends AbstractPositionParser {
         boolean domainWasFound = false;
         for (int i = 0; i < 5 && !domainWasFound; i++) {
             System.out.println(String.format(query, i, URLEncoder.encode(word, ENCODING)));
-            Source source = ParcerUtil.getSourceWithEncodeUTF8(String.format(query, i, URLEncoder.encode(word, ENCODING)));
-            System.out.println(source.getTextExtractor().toString());
-            List<Element> allElements = source.getAllElements(HTMLElementName.LI);
+            HtmlPage source = getHtmlPage(String.format(query, i, URLEncoder.encode(word, ENCODING)));
+            System.out.println(source.asText());
+            List allElements = source.getBody().getElementsByAttribute("li", "class", "b-serp-item i-bem b-serp-item_js_inited");
 
-            for (Iterator<Element> iterator = allElements.iterator(); iterator.hasNext() && !domainWasFound; ) {
-                Element element = iterator.next();
+            for (Iterator iterator = allElements.iterator(); iterator.hasNext() && !domainWasFound; ) {
+                HtmlElement element = (HtmlElement) iterator.next();
 
                 if(!isRealSite(element)){
                     continue;
                 }
-                List<Element> cites = element.getAllElements(HTMLElementName.A);
+                List cites = element.getElementsByAttribute("a", "class", "b-serp-item__title-link");
                 if(cites.size() < 1){
                     continue;
                 }
                 String site = "";
-                for (Iterator<Element> elementIterator = cites.iterator(); elementIterator.hasNext(); ) {
-                    Element next = elementIterator.next();
+                for (Iterator elementIterator = cites.iterator(); elementIterator.hasNext(); ) {
+                    HtmlElement next = (HtmlElement) elementIterator.next();
 
-                    if(next.getAttributeValue("class") != null && next.getAttributeValue("class").equals("b-serp-item__title-link")){
-                        site = next.getAttributeValue("href");
-                        break;
-                    }
+//                    if(next.getAttributeValue("class") != null && next.getAttributeValue("class").equals("b-serp-item__title-link")){
+                        site = next.getAttribute("href");
+//                        break;
+//                    }
                 }
                 position++;
 
                 System.out.println(site);
-                if(site.startsWith(domain)) domainWasFound = true;
+                if(site.startsWith("http://" + domain) || site.startsWith("https://" + domain)) domainWasFound = true;
             }
         }
         return domainWasFound ? position : 51;
     }
 
-    private boolean isRealSite(Element element) {
+    private boolean isRealSite(HtmlElement element) {
 
         return true;
     }
@@ -84,10 +86,10 @@ public class YandexPositionParser extends AbstractPositionParser {
 
     public static void main(String[] args) {
         try {
-            YandexPositionParser parcer = new YandexPositionParser();
+            YandexPositionParser parser = new YandexPositionParser();
 
-            Integer water = parcer.currentPosition("pizza-kiev.com.ua", "пицца киев");
-            System.out.println(water);
+            Integer position = parser.currentPosition("www.amorepizza.kiev.ua", "пицца киев");
+            System.out.println(position);
         } catch (CaptchaException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } catch (IOException e) {
